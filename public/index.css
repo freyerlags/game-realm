@@ -1,0 +1,1385 @@
+/* Add or modify these rules in your assets/css/index.css file */
+
+/* --- Game Window Overlay --- */
+
+ body {
+            font-family: sans-serif; /* Example font */
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Dark background */
+            color: #eee; /* Light text */
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        header {
+            background-color: #1a1a1a;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav h1 {
+            margin: 0;
+            font-size: 1.8em;
+            color: #4CAF50; /* Green accent */
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            color: #eee;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #4CAF50;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('Imgs/hero-bg.jpg') no-repeat center center/cover; /* Example background image */
+            padding: 60px 20px;
+            text-align: center;
+            color: #fff;
+            animation: fadeIn 1s ease-out forwards; /* Apply fade-in */
+        }
+
+        .hero h2 {
+            margin-top: 0;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .games {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .games h3 {
+            font-size: 1.8em;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Responsive grid */
+            gap: 20px; /* Space between cards */
+        }
+
+        /* Style for the new game card structure */
+        .game-card {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #444;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Add smooth transition */
+            position: relative;
+            padding-bottom: 10px;
+            opacity: 0; /* For slide-in animation */
+            transform: translateY(20px); /* For slide-in animation */
+            animation: slideIn 0.5s ease-out forwards; /* Initial animation */
+            /* animation-delay will be set in JS for stagger */
+        }
+
+        .game-card:hover {
+           transform: translateY(-5px); /* Lift effect */
+           box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-card .imgg {
+            width: 100%;
+            height: 150px; /* Fixed height for consistency */
+            object-fit: cover; /* Cover the area without distortion */
+            border-bottom: 1px solid #444;
+        }
+
+        .game-card h4 {
+            margin: 10px 5px;
+            color: #fff;
+            font-size: 1.1em;
+            flex-grow: 1; /* Allows title to take space */
+            word-break: break-word; /* Prevent long names from overflowing */
+        }
+
+        .game-info {
+            display: flex;
+            flex-direction: column;
+            padding: 0 10px;
+            flex-grow: 1; /* Make info section fill available space */
+        }
+
+        .game-actions {
+            display: flex;
+            justify-content: space-around; /* Space out buttons */
+            align-items: center;
+            padding: 5px 0;
+            margin-top: auto; /* Push actions to the bottom */
+        }
+
+        .game-card .play-button {
+           background-color: #4CAF50;
+           color: white;
+           border: none;
+           border-radius: 5px;
+           padding: 8px 15px;
+           cursor: pointer;
+           font-size: 1em;
+           transition: background-color 0.3s ease;
+           flex-grow: 1; /* Allow button to grow */
+           margin-right: 5px; /* Space between play and favorite */
+        }
+
+        .game-card .play-button:hover {
+            background-color: #45a049;
+        }
+
+        .game-card .favorite-button {
+            position: absolute; /* Position over the image */
+            top: 5px;
+            right: 5px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: white;
+            border: none;
+            border-radius: 50%; /* Make it round */
+            width: 30px; /* Set a fixed size */
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: color 0.3s ease, background-color 0.3s ease; /* Smooth color/bg change */
+            z-index: 5; /* Make sure it's above the image */
+        }
+
+        .game-card .favorite-button:hover {
+             background-color: rgba(0, 0, 0, 0.7); /* Darker background on hover */
+        }
+
+         .game-card .favorite-button .heart-icon {
+             color: #aaa; /* Default heart color */
+             transition: color 0.3s ease; /* Smooth heart color change */
+         }
+
+         .game-card .favorite-button .heart-icon.favorited {
+             color: red; /* Red when favorited */
+         }
+
+         /* Adjust main content visibility when overlay is active */
+         body.game-active {
+             overflow: hidden; /* Prevent scrolling the main page when game is open */
+         }
+
+         /* Animations */
+         @keyframes fadeIn {
+             from { opacity: 0; }
+             to { opacity: 1; }
+         }
+
+         @keyframes slideIn {
+              from { opacity: 0; transform: translateY(20px); }
+              to { opacity: 1; transform: translateY(0); }
+         }
+
+         /* Game Window Overlay */
+        .game-window-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: none; /* Controlled by JS class 'active' now */
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Align content to top */
+            padding: 10px;
+            box-sizing: border-box;
+
+            /* Add transition for modal appearance */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .game-window-overlay.active {
+            opacity: 1;
+            visibility: visible;
+             display: flex; /* Make it visible when active */
+        }
+
+        .game-window-controls {
+             /* Position at the bottom */
+             margin-top: auto; /* Pushes the controls to the bottom */
+             width: 100%;
+             max-width: 1200px;
+             height: 50px; /* Slightly taller controls at the bottom */
+             background-color: #222;
+             color: white;
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             padding: 0 15px;
+             box-sizing: border-box;
+             border-bottom-left-radius: 8px; /* Rounded corners at the bottom */
+             border-bottom-right-radius: 8px;
+             flex-shrink: 0;
+        }
+
+        .game-window-controls span {
+            flex-grow: 1;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 0 10px;
+        }
+
+        .game-window-controls button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 1.4em; /* Slightly larger icons */
+            cursor: pointer;
+            margin-left: 10px;
+            transition: color 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+        }
+
+         .game-window-controls button:hover {
+            color: #4CAF50;
+         }
+
+
+        .game-iframe-container {
+            width: 100%;
+            flex-grow: 1; /* Allows iframe container to take remaining space */
+            display: flex;
+            justify-content: center; /* Center iframe horizontally */
+            align-items: center; /* Center iframe vertically */
+            background-color: #000;
+            border-top-left-radius: 8px; /* Rounded corners at the top */
+            border-top-right-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 10px; /* Space between iframe and controls */
+        }
+
+        .game-window-overlay iframe {
+            display: block;
+             /* Adjust width and height to maintain aspect ratio but not necessarily fill */
+             /* Example: Max width 80% of container, Max height 90% of container */
+             max-width: 95%; /* Adjust percentage as needed */
+             max-height: 95%; /* Adjust percentage as needed */
+             width: 100%; /* Default to 100% but constrained by max-width */
+             height: 100%; /* Default to 100% but constrained by max-height */
+            border: none;
+            /* Combine max-width/height with object-fit or aspect-ratio if needed for strict aspect control */
+            /* object-fit: contain; */ /* Can help maintain aspect ratio within container */
+             /* aspect-ratio: 16 / 9; */ /* Set a specific aspect ratio if all games use the same */
+        }
+
+        /* Specific style for the Favorites section grid */
+        #favoriteGamesGrid {
+            /* Adjust grid columns for the favorites section if desired, e.g., fewer columns */
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Slightly wider cards for favorites? */
+            margin-bottom: 40px; /* Space between favorites and all games */
+        }
+
+         #noFavoritesMessage {
+            color: #ccc;
+            text-align: center;
+            width: 100%;
+            grid-column: 1 / -1; /* Span across all columns in grid */
+            font-size: 1.2em;
+            margin-top: 10px;
+         }
+
+         footer {
+              text-align: center;
+              padding: 20px;
+              background-color: #1a1a1a;
+              color: #888;
+              font-size: 0.9em;
+         }
+         
+.game-window-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 1000;
+  display: none; /* Initially hidden, controlled by .active class */
+  flex-direction: column; /* Stack controls and iframe vertically */
+  align-items: center; /* Center content horizontally */
+  justify-content: flex-start; /* Align content towards the top initially */
+  padding: 10px; /* Add padding around the entire overlay */
+  box-sizing: border-box;
+
+  /* Transition for showing/hiding */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.game-window-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  display: flex; /* Make it visible and use flex layout */
+}
+
+/* --- Game Controls (Moved to the bottom) --- */
+.game-window-controls {
+  /* Position at the bottom */
+  margin-top: auto; /* Pushes the controls to the bottom */
+  width: 100%;
+  max-width: 1200px; /* Match iframe container max width */
+  height: 60px; /* Give controls more vertical space */
+  background-color: #222;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; /* Increase horizontal padding */
+  box-sizing: border-box;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  flex-shrink: 0; /* Prevent shrinking below minimum size */
+}
+
+.game-window-controls span {
+  flex-grow: 1;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em; /* Slightly larger title font */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 15px; /* Increase margin around the title */
+}
+
+.game-window-controls div {
+  /* Container for the buttons to manage their spacing */
+  display: flex;
+  align-items: center;
+}
+
+.game-window-controls button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5em; /* Larger icons */
+  cursor: pointer;
+  margin-left: 15px; /* Increase space between buttons */
+  transition: color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  padding: 8px; /* Increase clickable area/padding */
+}
+
+.game-window-controls button:hover {
+  color: #4CAF50;
+}
+
+/* --- Iframe Container --- */
+.game-iframe-container {
+  width: 100%;
+  max-width: 1200px; /* Limit the maximum width of the iframe container */
+  flex-grow: 1; /* Allows iframe container to take remaining space */
+  display: flex; /* Use flex to center iframe */
+  justify-content: center; /* Center iframe horizontally */
+  align-items: center; /* Center iframe vertically */
+  background-color: #000; /* Black background behind the iframe */
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  overflow: hidden; /* Hide parts of the iframe if it overflows the container */
+  margin-bottom: 10px; /* Space between iframe and controls */
+}
+
+/* --- The Iframe Itself --- */
+.game-window-overlay iframe {
+  display: block; /* Remove extra space below iframe */
+  border: none;
+  /* Adjust size to fit within container while maintaining aspect ratio */
+  max-width: 100%; /* Don't exceed container width */
+  max-height: 100%; /* Don't exceed container height */
+  width: 100%; /* Default to 100% but constrained by max-width */
+  height: 100%; /* Default to 100% but constrained by max-height */
+  object-fit: contain; /* Scale content to fit, maintaining aspect ratio */
+  /* Optionally set a specific aspect ratio if all games are the same, e.g.: */
+  /* aspect-ratio: 16 / 9; */
+}
+
+/* Adjust main content visibility when overlay is active */
+body.game-active {
+  overflow: hidden; /* Prevent scrolling the main page when game is open */
+}
+
+/* Animations (keep or refine existing ones) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Additional smooth hover effect for game cards */
+.game-card {
+  /* existing styles */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.2s ease;
+}
+
+.game-card:hover {
+  /* existing styles */
+  background-color: #2a2a2a; /* Slightly lighter background on hover */
+}
+
+nav a {
+  /* existing styles */
+  transition: color 0.3s ease, transform 0.2s ease; /* Add transform transition */
+}
+
+nav a:hover {
+  /* existing styles */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #121212;
+  color: #fff;
+  line-height: 1.6;
+}
+
+nav {
+  background: #1f1f1f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
+}
+
+nav h1 {
+  color: #00ff99;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5em;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #00ff99;
+}
+
+.hero {
+  text-align: center;
+  padding: 4em 1em;
+  background: linear-gradient(to right, #333, #444);
+}
+
+.games {
+  padding: 2em;
+  text-align: center;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2em;
+  margin-top: 1em;
+}
+
+.game-card {
+  background: #222;
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 255, 153, 0.2);
+}
+
+.game-card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.game-card h4 {
+  margin: 1em 0 0.5em;
+}
+
+.game-card button {
+  background: #00ff99;
+  border: none;
+  padding: 0.5em 1em;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.game-card button:hover {
+  background: #00cc77;
+}
+
+footer {
+  text-align: center;
+  padding: 1em;
+  background: #1f1f1f;
+}
+body::-webkit-scrollbar {
+  width: 10px; /* Adjust the width of the vertical scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05); /* A subtle, dark background for the track */
+  border-radius: 5px; /* Optional: round the corners of the track */
+}
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2); /* A semi-transparent white/grey thumb */
+  border-radius: 5px; /* Round the corners of the thumb */
+  border: 2px solid transparent; /* This effectively gives it padding without changing the clickable area */
+  background-clip: padding-box; /* Ensures background respects padding-box */
+}
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+}
+/* Standard properties for Firefox */
+body {
+  scrollbar-width: thin; /* Make the scrollbar thinner */
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05); /* thumb track */
+  /* Ensure overflow-y is set for the scrollbar to appear */
+  overflow-y: auto; /* Already in your code, but double-check */
+   position: relative; /* Needed for z-index stacking with particles */
+   z-index: 0; /* Below particles */
+}
+/* Particles div needs to be between body and content/header */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensure particles are behind everything */
+    background-color: var(--background-color-dark, #2a2a2a); /* Use variable or fallback */
+    /* Ensure particles div doesn't cause layout issues */
+    pointer-events: none;
+}
+
+/* Style to prevent body scrolling when settings are open */
+body.settings-open {
+  overflow: hidden;
+}
+
+
+
+/* Main Content Area - Needs top padding to not be hidden by fixed header */
+main.hub-container {
+  /* globalStyles.css provides base .content-section padding. Match or override. */
+  padding-top: 100px; /* Add top padding equal to or more than header height */
+  padding-bottom: 20px;
+  padding-left: 40px; /* Match global padding */
+  padding-right: 40px; /* Match global padding */
+  width: 100%;
+  max-width: var(--content-max-width, 1600px);
+  margin: 0 auto; /* Center the container */
+  position: relative;
+  z-index: 1; /* Ensure content is above particles, but below header/settings overlay/menu */
+  display: block;
+  /* Add transition for potential effects when menu is open, like slight scale or blur */
+  transition: transform 0.3s ease, filter 0.3s ease;
+   box-sizing: border-box;
+}
+
+/* Optional: effect on main content when settings menu is open */
+body.settings-open main.hub-container {
+ /* transform: translateX(-20px); /* Example: slight shift */
+ filter: blur(3px); /* Example: blur effect */
+ pointer-events: none; /* Disable interaction with main content */
+}
+
+
+/* Search and Controls section */
+.hub-controls {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 30px;
+padding: 15px;
+background: rgba(30, 30, 30, 0.5);
+border-radius: 8px;
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+gap: 20px;
+flex-wrap: wrap;
+ /* Entrance Animation (Keep) */
+opacity: 0;
+transform: translateY(20px);
+animation: controlsEntrance 0.6s ease-out forwards 0.7s;
+ z-index: 1; /* Ensure controls are above particle interactivity area */
+}
+@keyframes controlsEntrance {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.search-wrapper {
+display: flex;
+align-items: center;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 20px;
+padding: 0px 5px 0px 15px;
+flex-grow: 1;
+max-width: 500px;
+transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.search-wrapper:focus-within {
+background: rgba(255, 255, 255, 0.2);
+box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+#myInput {
+flex-grow: 1;
+padding: 10px;
+border: none;
+background: transparent;
+color: #fff;
+font-size: 1rem;
+outline: none;
+ /* cursor: none !important; /* Ensure custom cursor */
+}
+/* Apply custom cursor style to input when enabled */
+body.custom-cursor-enabled #myInput {
+   cursor: none !important;
+}
+
+#myInput::placeholder {
+color: #aaa;
+}
+.search-icon-btn {
+background: transparent;
+border: none;
+color: #ddd;
+font-size: 1.1rem;
+padding: 10px;
+cursor: pointer; /* Overridden by global cursor */
+transition: color 0.3s ease;
+}
+.search-icon-btn:hover {
+color: #fff;
+}
+.toggle-categories-btn { /* Style for the toggle button if you add it */
+background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.15));
+color: #e0e0e0;
+border: 1px solid rgba(255, 255, 255, 0.2);
+padding: 10px 20px;
+border-radius: 6px;
+cursor: pointer; /* Overridden by global cursor */
+font-size: 0.9rem;
+font-weight: bold;
+transition: all 0.3s ease;
+backdrop-filter: blur(3px);
+-webkit-backdrop-filter: blur(3px);
+}
+.toggle-categories-btn:hover {
+background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.2));
+box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+transform: translateY(-1px);
+color: #fff;
+}
+
+
+/* Container for Categories Entrance Animation */
+.categories-wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: categoriesEntrance 0.6s ease-out forwards 0.9s; /* Animation with delay */
+   z-index: 1; /* Ensure wrapper is above particle interactivity area */
+   position: relative; /* Needed for z-index to work */
+}
+@keyframes categoriesEntrance {
+   from { opacity: 0; transform: translateY(20px); }
+   to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Category Sections Layout */
+.game-category {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.category-header h6 {
+  font-size: 1.8rem;
+  background: linear-gradient(45deg, #ffffff, #cccccc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.5);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+   /* Entrance Animation (Keep) */
+   opacity: 0;
+   transform: translateX(-20px);
+   animation: categoryHeaderEntrance 0.5s ease-out forwards;
+   animation-delay: 1.2s; /* Base delay */
+}
+@keyframes categoryHeaderEntrance {
+   from { opacity: 0; transform: translateX(-20px); }
+   to { opacity: 1; transform: translateX(0); }
+}
+
+.category-header h6 i {
+  font-size: 0.9em;
+  background: linear-gradient(45deg, #ffffff, #cccccc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+
+/* Scroll Arrows for Categories */
+.scroll-arrows {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+  align-items: center;
+}
+.scroll-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transform: scale(1) translateZ(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: auto;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ccc;
+  border-radius: 50%;
+  will-change: opacity, transform;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.scroll-arrow.hidden {
+  opacity: 0;
+  transform: scale(0.8) translateZ(0);
+  pointer-events: none;
+}
+
+.scroll-arrow:hover {
+  transform: scale(1.1) translateZ(0);
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.scroll-arrow:active {
+  transform: scale(0.95) translateZ(0);
+  transition: transform 0.1s ease;
+}
+
+@keyframes arrowPulse {
+  0% { transform: scale(1) translateZ(0); }
+  50% { transform: scale(1.15) translateZ(0); }
+  100% { transform: scale(1) translateZ(0); }
+}
+.scroll-arrow.show-pulse {
+  animation: arrowPulse 0.4s ease;
+}
+
+
+/* Game Button Containers (Horizontal Scroll & Grid) */
+.btn-container,
+.favorite-container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 5px 20px 5px;
+  gap: 20px;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  scroll-behavior: smooth;
+  will-change: scroll-position;
+  transform: translateZ(0);
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  opacity: 0; /* Add initial opacity for animation */
+  transform: translateY(20px); /* Add initial transform for animation */
+  animation: categoriesEntrance 0.6s ease-out forwards 0.9s; /* Apply animation with delay */
+}
+/* Hide scrollbar for Webkit browsers */
+.btn-container::-webkit-scrollbar,
+.favorite-container::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* Grid container */
+.btn-container-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 10px 0;
+  opacity: 0; /* Add initial opacity for animation */
+  transform: translateY(20px); /* Add initial transform for animation */
+  animation: categoriesEntrance 0.6s ease-out forwards 0.9s; /* Apply animation with delay */
+}
+
+
+/* Individual Game Button Styling */
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 180px;
+  height: 150px;
+  background: linear-gradient(135deg, rgba(45, 45, 45, 0.65), rgba(60, 60, 60, 0.75));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0;
+  overflow: hidden;
+  color: #ddd;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  vertical-align: top;
+  flex-shrink: 0;
+  transform: translateZ(0); /* Improve rendering performance */
+
+  /* --- Animation Properties --- */
+  opacity: 1; /* Start visible */
+  transform: scale(1); /* Start at normal size */
+  transition: opacity 0.3s ease-out,
+              transform 0.3s ease-out,
+              box-shadow 0.3s ease,
+              border-color 0.3s ease,
+              background 0.3s ease;
+  will-change: opacity, transform; /* Hint for browser optimization */
+}
+
+/* Ensure grid buttons have auto width */
+.btn-container-grid .btn {
+  width: auto;
+  height: 150px;
+}
+
+/* Hover state for the button */
+.btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.25);
+  background: linear-gradient(135deg, rgba(55, 55, 55, 0.75), rgba(70, 70, 70, 0.85));
+}
+
+/* Functional hidden class for search results */
+.btn.hidden {
+  display: none !important; /* Use !important to ensure it overrides flex/grid items */
+}
+
+/* Style for the image - should always be visible */
+.btn .imgg {
+  display: block;
+  width: 100%;
+  flex-grow: 1;
+  object-fit: cover; /* Cover the area without stretching */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #222; /* Fallback background if image fails */
+}
+
+/* Style for the Game Info Bar container */
+.game-info-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px; /* Match this to fit text */
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+  color: #ddd; /* Light text color */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  padding: 0 10px; /* Internal padding */
+  box-sizing: border-box; /* Include padding in width/height */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Show ellipsis (...) for overflow */
+  /* --- Hide by default using transform --- */
+  transform: translateY(100%); /* Start off-screen below the button */
+  transition: transform 0.3s ease-out; /* Smooth slide-up transition */
+  z-index: 2; /* Ensure it's above the image but below the heart icon */
+   pointer-events: none; /* Allow clicks to pass through to the button below */
+}
+
+/* Style for the Game name text inside the bar */
+.game-info-bar .game-name {
+  display: block;
+  font-size: 0.95rem; /* Font size for the name */
+  font-weight: bold; /* Bold text */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: center;
+}
+
+/* On button hover, show the info bar */
+.btn:hover .game-info-bar {
+  transform: translateY(0); /* Slide into view */
+   pointer-events: none; /* Keep pointer-events none on the bar itself */
+}
+
+/* Style for the heart icon */
+.btn .heart-icon {
+  position: absolute;
+  top: 8px; /* Distance from top */
+  right: 8px; /* Distance from right */
+  font-size: 1.1rem; /* Icon size */
+  color: rgba(255, 255, 255, 0.5); /* Default color (greyed out) */
+  background-color: rgba(0, 0, 0, 0.4); /* Subtle background behind icon */
+  padding: 4px 5px; /* Padding around icon */
+  border-radius: 4px; /* Slight rounding */
+  transition: all 0.3s ease; /* Smooth transition for color/size/shadow */
+  z-index: 5; /* Ensure it's on top of everything else in the button */
+  cursor: pointer; /* Indicate clickable */
+  pointer-events: auto; /* Crucial: Makes the icon itself clickable */
+}
+/* Hover state for the heart icon */
+.btn:hover .heart-icon {
+  color: rgba(255, 255, 255, 0.8); /* Brighter on parent hover */
+  background-color: rgba(0, 0, 0, 0.6); /* Darker background on parent hover */
+}
+/* State when heart is clicked/favorited */
+.btn .heart-icon.hearted {
+  color: #ff6b6b; /* Red color */
+  text-shadow: 0 0 8px rgba(255, 107, 107, 0.8); /* Subtle glow */
+}
+.btn .heart-icon.hearted:hover {
+   color: #ff4747; /* Slightly darker red on hover when hearted */
+}
+
+
+/* Favorites Section Styling */
+.favorites-section {
+  background: rgba(255, 255, 255, 0.03); /* Subtle background */
+  padding: 20px; /* Inner padding */
+  border-radius: 8px; /* Rounded corners */
+  margin-bottom: 40px; /* Space below */
+  /* display is controlled by JS based on if it has children */
+}
+
+/* Message for no search results */
+#noResultsMessage {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1.3em;
+  color: #ccc;
+   /* Entrance Animation (Keep) */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: noResultsEntrance 0.5s ease-out forwards;
+  animation-delay: 1.5s;
+}
+@keyframes noResultsEntrance {
+   from { opacity: 0; transform: translateY(20px); }
+   to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* --- Settings Side Menu Styles (Copied) --- */
+/* Scrollbar styling for settings panel */
+#settings.content-section::-webkit-scrollbar {
+width: 10px;
+}
+#settings.content-section::-webkit-scrollbar-track {
+background: rgba(255, 255, 255, 0.05);
+border-radius: 5px;
+}
+#settings.content-section::-webkit-scrollbar-thumb {
+background-color: rgba(255, 255, 255, 0.2);
+border-radius: 5px;
+border: 2px solid transparent;
+background-clip: padding-box;
+}
+#settings.content-section::-webkit-scrollbar-thumb:hover {
+background-color: rgba(255, 255, 255, 0.3);
+}
+#settings.content-section {
+scrollbar-width: thin;
+scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+}
+
+/* Fix for color button layout */
+.settings-group .setting-item .color-button-list {
+display: flex;
+flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+gap: 5px; /* Space between buttons */
+justify-content: flex-start; /* Align buttons to the start */
+align-items: center;
+}
+
+.settings-color-button {
+width: 28px; /* Slightly larger for better click area */
+height: 28px; /* Keep it square */
+border-radius: 50%; /* Make them round */
+border: 2px solid transparent; /* Default border */
+cursor: pointer;
+padding: 0;
+flex-shrink: 0; /* Prevent shrinking */
+transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+}
+
+.settings-color-button.active {
+border-color: var(--cursor-hover-border-color, #007bff); /* Indicate active state */
+box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* Optional glow */
+}
+.settings-color-button:hover:not(.active) {
+ border-color: rgba(255, 255, 255, 0.3); /* Subtle hover effect */
+}
+
+
+section#settings.content-section {
+position: fixed;
+top: 0; /* Align to the top of the viewport */
+right: -350px; /* Start off-screen to the right (adjust width below) */
+width: 100%;
+max-width: 340px; /* Set a max-width for the side menu */
+height: 100vh; /* Full viewport height */
+overflow-y: auto; /* Allow scrolling within the settings panel */
+background-color: var(--overlay-background, rgba(0, 0, 0, 0.95)); /* Use overlay color, fallback to dark */
+border-left: 1px solid rgba(255, 255, 255, 0.1);
+box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+z-index: 100; /* Higher than main content and particles, but lower than header if header is fixed */
+transition: right 0.3s ease-out, visibility 0s linear 0.3s; /* Animate sliding, delayed visibility change */
+padding-top: 80px; /* Ensure space below fixed header */
+padding-bottom: 40px; /* Add padding at the bottom */
+padding-left: 20px; /* Internal padding */
+padding-right: 20px; /* Internal padding */
+box-sizing: border-box; /* Include padding in width/height */
+display: block !important; /* Always block, visibility controlled by 'right' and z-index */
+visibility: hidden; /* Hide initially and when off-screen */
+}
+
+section#settings.content-section.is-visible {
+right: 0; /* Slide into view */
+visibility: visible; /* Make visible immediately when sliding in */
+transition: right 0.3s ease-out, visibility 0s linear 0s;
+}
+
+/* Settings Overlay */
+#settings-overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background-color: var(--overlay-background, rgba(0, 0, 0, 0.5)); /* Use the variable or fallback */
+ z-index: 99; /* Below settings menu, above main content and particles */
+ opacity: 0;
+ visibility: hidden; /* Hidden by default */
+ transition: opacity 0.3s ease, visibility 0.3s ease;
+ pointer-events: none; /* Allow clicks to pass through when hidden */
+}
+
+#settings-overlay.is-visible {
+ opacity: 1;
+ visibility: visible;
+ pointer-events: auto; /* Enable clicks to close the menu */
+}
+
+/* Ensure buttons and selects inside settings have dark theme styles */
+#settings.content-section button,
+#settings.content-section select {
+   background-color: var(--button-background-dark, #333);
+   color: var(--button-text-color-dark, #eee);
+   border: 1px solid var(--button-border-color-dark, #555);
+   border-radius: 4px;
+   padding: 8px 12px;
+   font-family: inherit;
+   font-size: 1rem;
+   cursor: pointer; /* Overridden by custom cursor if enabled */
+   transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#settings.content-section button:hover,
+#settings.content-section select:hover {
+    background-color: var(--button-background-hover-dark, #444);
+    border-color: var(--button-border-color-hover-dark, #777);
+}
+ #settings.content-section button:active {
+     background-color: var(--button-background-active-dark, #222);
+     border-color: var(--button-border-color-active-dark, #666);
+ }
+
+ #settings.content-section button:disabled,
+ #settings.content-section select:disabled {
+     opacity: 0.5;
+     cursor: not-allowed;
+ }
+
+/* --- Sneak Mode Select Specific Styles --- */
+#sneak-mode-select {
+  /* Override some general button/select styles if needed, or just inherit */
+  /* background-color, color, border inherited from above */
+  padding: 6px 10px; /* Adjust padding specifically for the select */
+  /* Add some default styles to remove browser defaults */
+  -webkit-appearance: none; /* Remove default browser styling in Webkit browsers */
+  -moz-appearance: none;    /* Remove default browser styling in Firefox */
+  appearance: none;         /* Remove default browser styling */
+  /* Add a custom arrow for appearance */
+  /* Using an inline SVG with light grey color (#eeeeee) */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23eeeeee%22%20d%3D%22M287%2C114.7L159.3%2C242.5c-5.8%2C5.8-15.2%2C5.8-21%2C0L5.4%2C114.7c-5.8-5.8-5.8-15.2%2C0-21l19.8-19.8 c5.8-5.8%2C15.2-5.8%2C21%2C0l109.5%2C109.5l109.5-109.5c5.8-5.8%2C15.2-5.8%2C21%2C0l19.8%2C19.8C292.8%2C99.5%2C292.8%2C108.9%2C287%2C114.7z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 12px auto;
+  padding-right: 30px; /* Make space for the custom arrow */
+}
+
+/* Style for options within the dropdown (less reliable cross-browser, may need system overrides) */
+#sneak-mode-select option {
+ background-color: var(--background-color-dark, #2a2a2a); /* Dark background for options */
+ color: var(--text-color-light, #eeeeee); /* Light text for options */
+}
+
+/* --- Custom Cursor Styles (Copied) --- */
+#custom-cursor {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 24px; /* Increased Size */
+   height: 24px; /* Increased Size */
+   border-radius: 50%;
+   border: 2px solid var(--cursor-border-color, rgba(255, 255, 255, 0.5));
+   pointer-events: none; /* Does not block clicks */
+   z-index: 10000; /* Always on top */
+   opacity: 0; /* Hidden by default */
+   /* Base transition: opacity animates, transform (position) is instant */
+   transition: opacity 0.3s ease, transform 0s linear;
+   /* Set initial transform using CSS variables for position */
+   transform: translate(var(--mouse-x, 0), var(--mouse-y, 0)); /* Defaults if vars not set */
+}
+
+/* Only show the custom cursor if enabled by setting (via body class) */
+body.custom-cursor-enabled #custom-cursor {
+    opacity: 1; /* Visible when enabled */
+}
+
+/* Hide the default cursor when the custom cursor is enabled */
+body.custom-cursor-enabled {
+    cursor: none !important; /* Force hide default cursor */
+}
+
+/* Style for interactive elements hover state */
+body.custom-cursor-enabled #custom-cursor.on-interactive {
+   transform: translate(var(--mouse-x), var(--mouse-y)) scale(1.5); /* Example hover scale */
+   border-color: var(--cursor-hover-border-color, #007bff); /* Use variable for hover color */
+   /* Add transitions for the properties that change specifically on hover (scale, border-color) */
+   transition: opacity 0.3s ease, transform 0.1s ease, border-color 0.2s ease; /* Scale transition 0.1s */
+}
+/* Style for click state */
+body.custom-cursor-enabled #custom-cursor.clicked {
+   transform: translate(var(--mouse-x), var(--mouse-y)) scale(0.8); /* Example click scale */
+   /* Add transitions for the properties that change specifically on click (scale) */
+  transition: opacity 0.3s ease, transform 0.1s ease; /* Scale transition 0.1s */
+ }
+/* When not interactive or clicked, the base styles apply */
+
+
+/* --- Unfocused Overlay Styles (Copied) --- */
+#unfocused-overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ /* Use background-image set by JS based on selection */
+ background-size: cover; /* This makes the image cover the entire area */
+ background-position: center; /* This centers the image */
+ background-repeat: no-repeat; /* Prevent the image from tiling */
+ /* Fallback background color if the image doesn't load */
+ background-color: #f8f8f8; /* Fallback */
+ display: none; /* Hidden by default */
+ /* INCREASED Z-INDEX to be above the header (101) and settings overlay (99) */
+ z-index: 102;
+ box-sizing: border-box;
+  /* Pointer events are controlled by JS (pointer-events: auto when visible) */
+ pointer-events: none; /* Disable interaction with content below */
+}
+
+/* Hide main content when the body has the 'unfocused' class (applied by globalSettings.js) */
+/* This covers the case where the mouse leaves the window */
+body.unfocused main.hub-container {
+   /* We don't blur/pointer-events: none here, as the overlay covers it */
+   display: none; /* Hide the entire main content area */
+}
+
+
+/* Responsive adjustments for Games layout */
+@media (max-width: 1200px) {
+main.hub-container {
+   padding-top: 90px; /* Adjust based on header height */
+   padding-left: 30px;
+   padding-right: 30px;
+   padding-bottom: 20px;
+}
+section#settings.content-section {
+   padding-top: 90px; /* Adjust based on header height */
+   max-width: 300px; /* Adjust menu width */
+   right: -310px; /* Adjust off-screen position */
+}
+section#settings.content-section.is-visible {
+   right: 0;
+}
+.btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+.btn { width: 160px; height: 140px; } /* Adjusted height */
+.game-info-bar { height: 35px; font-size: 0.9em; } /* Adjusted bar height */
+.game-info-bar .game-name { font-size: 0.9em; }
+}
+
+@media (max-width: 768px) {
+/* Header/Nav styles are in globalStyles.css now */
+header { padding: 10px 15px; } /* Adjust header padding */
+header .header-container { flex-direction: column; gap: 10px; } /* Stack header items */
+header nav ul { flex-direction: column; align-items: flex-start; gap: 8px; } /* Stack nav links */
+
+
+main.hub-container {
+   padding-top: 140px; /* Adjust based on stacked header height */
+   padding-left: 15px;
+   padding-right: 15px;
+   padding-bottom: 30px;
+}
+section#settings.content-section {
+   padding-top: 80px; /* Adjust space below header */
+   max-width: 280px; /* Adjust menu width */
+   right: -290px; /* Adjust off-screen position */
+}
+section#settings.content-section.is-visible {
+   right: 0;
+}
+
+/* Adjust animation delays for smaller screens */
+.hub-controls { animation-delay: 0.8s; }
+.categories-wrapper { animation-delay: 1s; }
+.game-category .category-header h6 { animation-delay: 1.3s; }
+#noResultsMessage { animation-delay: 1.6s; }
+
+
+.hub-controls { flex-direction: column; align-items: stretch; padding: 10px; gap: 10px; }
+.search-wrapper { max-width: none; padding: 0px 5px 0px 10px; }
+#myInput { padding: 8px; font-size: 0.9rem; }
+.search-icon-btn { padding: 8px; }
+
+.category-header h6 { font-size: 1.6rem; gap: 8px;}
+.scroll-arrow { width: 30px; height: 30px; font-size: 0.9rem; }
+
+.btn-container, .favorite-container { gap: 15px; padding: 8px 5px 15px 5px; }
+.btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
+.btn { width: 140px; height: 130px; } /* Adjusted size */
+.game-info-bar { height: 30px; font-size: 0.85em; } /* Adjusted bar height */
+.game-info-bar .game-name { font-size: 0.85em; }
+.btn .heart-icon { font-size: 1rem; top: 6px; right: 6px; padding: 3px 4px; }
+}
+
+@media (max-width: 480px) {
+/* Header/Nav styles are in globalStyles.css now */
+
+main.hub-container {
+  padding-top: 120px; /* Adjust based on stacked header height */
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+}
+section#settings.content-section {
+   padding-top: 80px; /* Keep consistent with 768px */
+   max-width: 90%; /* Allow wider on small screens */
+   right: -100%; /* Hide fully off-screen */
+}
+section#settings.content-section.is-visible {
+   right: 0;
+}
+/* Animation delays remain the same as 768px */
+
+.category-header h6 { font-size: 1.4rem; gap: 6px; }
+.scroll-arrow { width: 28px; height: 28px; font-size: 0.8rem; }
+
+.btn-container, .favorite-container { gap: 10px; padding: 6px 4px 12px 4px; }
+.btn-container-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+.btn { width: 110px; height: 120px; } /* Adjusted size */
+.game-info-bar { height: 25px; font-size: 0.75em; } /* Adjusted bar height */
+.game-info-bar .game-name { font-size: 0.75em; }
+.btn .heart-icon { font-size: 0.9rem; top: 5px; right: 5px; padding: 3px; }
+}
