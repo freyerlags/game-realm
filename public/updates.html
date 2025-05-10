@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game realm - updates</title> <!-- Changed Title -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <!-- Assuming your index.css handles the overall layout and header/footer styling -->
+    <link href="assets/css/index.css" rel="stylesheet" />
+    <!-- You might add a specific CSS file for updates if needed, or add styles to index.css -->
+    <style>
+        /* Basic styling for the updates section, add this to your index.css or a new updates.css */
+        .updates {
+            padding: 20px;
+            max-width: 960px; /* Match hero/games section width */
+            margin: 20px auto; /* Center the section */
+            background-color: var(--section-bg-color); /* Use a CSS variable if you have one */
+            border-radius: 8px; /* Match other section styling */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .updates h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--heading-color); /* Use a CSS variable if you have one */
+        }
+
+        .update-entry {
+            border-bottom: 1px solid #eee; /* Separator between updates */
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .update-entry:last-child {
+            border-bottom: none; /* No border on the last entry */
+            margin-bottom: 0;
+        }
+
+        .update-entry h4 {
+            margin: 0 0 5px 0;
+            color: var(--secondary-heading-color); /* Use a CSS variable */
+        }
+
+        .update-date {
+            font-size: 0.9em;
+            color: #666;
+            margin: 0 0 10px 0;
+        }
+
+        .update-details {
+            list-style: disc;
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .update-details li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+          <h1>🎮 Game Realm</h1>
+          <ul>
+            <li><a href="index.html">Home</a></li> <!-- Link back to index -->
+            <li><a href="#">Unblocker(coming soon)</a></li>
+            <li><a href="updates.html">Updates</a></li> <!-- Mark this link as current -->
+            <li><a href="https://discord.gg/ppssWBHMKv">Discord</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h2>latest news and updates</h2> 
+        <p>stay informed about new games, features, and fixes</p> 
+      </section>
+
+      <section class="updates"> 
+        <h3>recent updates</h3> 
+        <div class="update-list">
+            <div class="update-entry">
+                <h4>version 1.01-b released</h4>
+                <p class="update-date">date: 2025-05-8</p>
+                <ul class="update-details">
+                    <li>added over 100 new games to the library.</li>
+                    <li>improved site performance and loading times.</li>
+                    <li>Fixed minor bugs in navigation menu.</li>
+                    <li>Updated styling for game cards.</li>
+                </ul>
+            </div>
+
+            <!-- Another Example Update Entry -->
+             <div class="update-entry">
+                <h4>site launch!</h4>
+                <p class="update-date">date: 2025-05-07</p>
+                <ul class="update-details">
+                    <li>welcome to game realm</li>
+                    <li>initial release with a selection of featured games</li>
+                    <li>basic navigation and layout implemented</li>
+                </ul>
+            </div>
+
+        </div>
+      </section>
+
+      <footer>
+        <p>© 2025 GameZone. All rights reserved.</p>  <br>1.01-b
+      </footer>
+
+</body>
+</html>
