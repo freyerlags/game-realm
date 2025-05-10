@@ -5,46 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>game realm</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-        <link href="/assets/css/index.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Link your main CSS file -->
+    <link href="assets/css/index.css" rel="stylesheet" />
 </head>
 <body>
     <header>
         <nav>
-          <h1>🎮 Game Realm</h1>
+          <h1>🎮 game realm</h1>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="comingsoon.html">Unblocker</a></li>
-            <li><a href="#">Updates</a></li>
-            <li><a href="#">Discord</a></li>
+            <li><a href="index.html">Home</a></li> <!-- Link back to home -->
+            <li><a href="#">Unblocker (In Development)</a></li>
+            <li><a href="updates.html">Updates</a></li>
+            <li><a href="https://discord.gg/ppssWBHMKv">Discord</a></li>
           </ul>
         </nav>
       </header>
-    
-      <section class="hero">
-        <h2>Welcome to Game Realm!</h2>
-        <p>Your hub for the latest games.</p>
+
+      <section class="hero fade-in">
+        <h2>welcome to game realm</h2>
+        <p>your hub for the latest games and updates.</p>
       </section>
-    
+
       <section class="games">
-        <h3>Featured Games</h3>
-        <div class="game-grid">
-          <div class="game-card">
-            <img src="idk" alt="2048">
-            <h4>2048</h4>
-             <button><li><a href="games/2048/index.html">Play!</a></li></button>
-          </div>
-          <div class="game-card">
-            <img src="https://via.placeholder.com/300x150" alt="badtimesim">
-            <h4>Bad Time Sim</h4>
-            <button><li><a href="#">Play!</a></li></button>
-          </div>
-        
+        <h3>your favorites</h3>
+        <div class="game-grid" id="favoriteGamesGrid">
+            <!-- Favorite game cards will be dynamically generated here -->
+             <p id="noFavoritesMessage" style="display: none;">no favorite games added yet. Click the heart icon on a game to add it here!</p>
+        </div>
+
+        <h3>All Games</h3>
+        <div class="game-grid" id="allGamesGrid">
+            <!-- All game cards (non-favorites) will be dynamically generated here -->
         </div>
       </section>
-    
+
+    <!-- Game Window Overlay -->
+    <div class="game-window-overlay" id="gameWindowOverlay">
+         <div class="game-iframe-container">
+             <iframe id="gameIframe" src="" frameborder="0"></iframe>
+         </div>
+         <div class="game-window-controls">
+             <span id="gameTitle">game title</span>
+             <div>
+                 <button id="fullscreenBtn" title="Fullscreen"><i class="material-symbols-outlined">fullscreen</i></button>
+                 <button id="newTabBtn" title="Open in New Tab"><i class="material-symbols-outlined">open_in_new</i></button>
+                 <button id="closeBtn" title="Close"><i class="material-symbols-outlined">close</i></button>
+             </div>
+         </div>
+     </div>
+     <!-- End Game Window Overlay -->
+
+
       <footer>
-        <p>© 2025 GameZone. All rights reserved.</p>  <br>1.2.0-b
+        <p>© 2025 gamerealm. All rights reserved.</p>  <br>1.01-b
       </footer>
-    
+
+    <!-- Link game data -->
+    <script src="assets/js/gamesData.js"></script>
+    <!-- Link your main JavaScript file -->
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
