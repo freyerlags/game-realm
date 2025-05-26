@@ -6,7 +6,7 @@
     <title>game realm</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-     <link rel="icon" href="Imgs.main-favicon.ico" type="image/x-icon">
+    <link rel="icon" href="Imgs.main-favicon.ico" type="image/x-icon">
     <link href="assets/CSS/index.css" rel="stylesheet" />
 </head>
 <body>
@@ -14,13 +14,54 @@
         <nav>
           <h1>🎮 game realm</h1>
           <ul>
-            <li><a href="index.html">Home</a></li> <!-- Link back to home -->
+            <li><a href="index.html">Home</a></li>
             <li><a href="comingsoon.html">Unblocker (In Development)</a></li>
             <li><a href="updates.html">Updates</a></li>
             <li><a href="https://discord.gg/ppssWBHMKv">Discord</a></li>
           </ul>
+          <!-- Settings Button -->
+          <button id="settingsBtn" class="settings-button" title="Settings">
+            <i class="fas fa-cog"></i>
+          </button>
         </nav>
       </header>
+
+      <!-- Settings Menu -->
+      <!-- Settings Menu -->
+      <div id="settingsMenu" class="settings-menu" style="display: none;">
+          <h4>Settings</h4>
+          <button id="closeSettingsBtn" class="close-settings-btn" title="Close Settings">×</button>
+          <div class="setting-item">
+              <label for="darkModeToggle">Dark Mode</label>
+              <label class="switch">
+                  <input type="checkbox" id="darkModeToggle">
+                  <span class="slider round"></span>
+              </label>
+          </div>
+          <div class="setting-item">
+              <button id="clearFavoritesBtn" class="settings-action-button">Clear All Favorites</button>
+          </div>
+          <hr class="settings-divider"> <!-- Visual separator -->
+          <div class="setting-item">
+              <button id="openInAboutBlankBtn" class="settings-action-button stealth-button">Open in about:blank</button>
+          </div>
+          <hr class="settings-divider">
+          <div class="setting-group">
+              <h5>Panic Button</h5>
+              <div class="setting-item">
+                  <label for="panicKeyInput">Panic Key:</label>
+                  <input type="text" id="panicKeyInput" placeholder="Press a key (e.g., \` )" readonly>
+              </div>
+              <div class="setting-item">
+                  <label for="panicUrlInput">Panic URL:</label>
+                  <input type="url" id="panicUrlInput" placeholder="https://google.com">
+              </div>
+              <button id="savePanicSettingsBtn" class="settings-action-button">Save Panic Settings</button>
+              <small id="panicKeyStatus" class="panic-status-message"></small>
+          </div>
+      </div>
+      <!-- End Settings Menu -->
+      <!-- End Settings Menu -->
 
       <section class="hero fade-in">
         <h2>welcome to game realm</h2>

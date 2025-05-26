@@ -3,46 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>game realm - updates</title> <!-- Changed Title -->
+    <title>game realm - updates</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <!-- Added Font Awesome for settings icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="Imgs.main-favicon.ico" type="image/x-icon">
     <link href="assets/CSS/index.css" rel="stylesheet" />
     <style>
-       
+        /* --- Updates Section Theming --- */
         .updates {
             padding: 20px;
-            max-width: 960px; /* Match hero/games section width */
-            margin: 20px auto; /* Center the section */
-            background-color: var(--section-bg-color); /* Use a CSS variable if you have one */
-            border-radius: 8px; /* Match other section styling */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 960px;
+            margin: 20px auto;
+            background-color: var(--card-background); /* Uses theme variable */
+            border-radius: 8px;
+            box-shadow: var(--card-shadow); /* Uses theme variable */
+            color: var(--text-color); /* Ensures text inside inherits theme color */
         }
 
-        .updates h3 {
+        .updates h2 { /* Changed from h3 to h2 for semantic consistency with hero */
             text-align: center;
-            margin-bottom: 20px;
-            color: var(--heading-color); /* Use a CSS variable if you have one */
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--section-border-color);
+            color: var(--section-title-color); /* Uses theme variable */
+        }
+
+        .update-list {
+            /* container for update entries if needed for future styling */
         }
 
         .update-entry {
-            border-bottom: 1px solid #eee; /* Separator between updates */
+            border-bottom: 1px solid var(--section-border-color); /* Uses theme variable */
             padding-bottom: 15px;
             margin-bottom: 15px;
         }
 
         .update-entry:last-child {
-            border-bottom: none; /* No border on the last entry */
+            border-bottom: none;
             margin-bottom: 0;
         }
 
         .update-entry h4 {
             margin: 0 0 5px 0;
-            color: var(--secondary-heading-color); /* Use a CSS variable */
+            color: var(--text-color); /* Uses theme variable */
+            font-size: 1.2em;
         }
 
         .update-date {
             font-size: 0.9em;
-            color: #666;
+            color: var(--card-meta-text-color); /* Uses theme variable */
             margin: 0 0 10px 0;
         }
 
@@ -54,75 +64,127 @@
 
         .update-details li {
             margin-bottom: 5px;
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
     <header>
         <nav>
-          <h1>🎮 Game Realm</h1>
+          <h1>🎮 game realm</h1>
           <ul>
-            <li><a href="index.html">Home</a></li> <!-- Link back to index -->
-            <li><a href="comingsoon.html">Unblocker(in development)</a></li>
-            <li><a href="updates.html">Updates</a></li> <!-- Mark this link as current -->
+            <li><a href="index.html">Home</a></li>
+            <li><a href="comingsoon.html">Unblocker (In Development)</a></li>
+            <li><a href="updates.html" class="active">Updates</a></li> <!-- Added class="active" -->
             <li><a href="https://discord.gg/ppssWBHMKv">Discord</a></li>
-            <li><a href="settings.html">Settings</a></li>
+            <!-- Removed <li><a href="settings.html">Settings</a></li> as the popup provides main settings -->
           </ul>
+          <!-- Settings Button -->
+          <button id="settingsBtn" class="settings-button" title="Settings">
+            <i class="fas fa-cog"></i>
+          </button>
         </nav>
       </header>
 
-      <section class="hero">
-        <h2>latest news and updates</h2> 
-        <p>stay informed about new games, features, and fixes</p> 
+      <!-- Settings Menu -->
+       <!-- Settings Menu -->
+      <div id="settingsMenu" class="settings-menu" style="display: none;">
+          <h4>Settings</h4>
+          <button id="closeSettingsBtn" class="close-settings-btn" title="Close Settings">×</button>
+          <div class="setting-item">
+              <label for="darkModeToggle">Dark Mode</label>
+              <label class="switch">
+                  <input type="checkbox" id="darkModeToggle">
+                  <span class="slider round"></span>
+              </label>
+          </div>
+          <div class="setting-item">
+              <button id="clearFavoritesBtn" class="settings-action-button">Clear All Favorites</button>
+          </div>
+          <hr class="settings-divider"> <!-- Visual separator -->
+          <div class="setting-item">
+              <button id="openInAboutBlankBtn" class="settings-action-button stealth-button">Open in about:blank</button>
+          </div>
+          <hr class="settings-divider">
+          <div class="setting-group">
+              <h5>Panic Button</h5>
+              <div class="setting-item">
+                  <label for="panicKeyInput">Panic Key:</label>
+                  <input type="text" id="panicKeyInput" placeholder="Press a key (e.g., \` )" readonly>
+              </div>
+              <div class="setting-item">
+                  <label for="panicUrlInput">Panic URL:</label>
+                  <input type="url" id="panicUrlInput" placeholder="https://google.com">
+              </div>
+              <button id="savePanicSettingsBtn" class="settings-action-button">Save Panic Settings</button>
+              <small id="panicKeyStatus" class="panic-status-message"></small>
+          </div>
+      </div>
+      <!-- End Settings Menu -->
+          <!-- You can add a link to a more detailed settings page here if needed -->
+          <!-- <div class="setting-item">
+              <a href="settings.html" class="settings-link-button">More Settings...</a>
+          </div> -->
+      </div>
+      <!-- End Settings Menu -->
+
+      <section class="hero fade-in"> <!-- Added fade-in class -->
+        <h2>Latest News and Updates</h2>
+        <p>Stay informed about new games, features, and fixes.</p>
       </section>
 
-
-<section class="updates"> 
-    <h3>Recent Updates</h3>
-      <div class="update-list">
+      <section class="updates">
+        <h2>Recent Updates</h2> <!-- Changed from h3 to h2 -->
+        <div class="update-list">
+                <div class="update-entry">
+                <h4>Version 2.1.1</h4>
+                <p class="update-date">Date: 2025-05-26</p>
+                <ul class="update-details">
+                    <li>Added Settings</li>
+                    <li>Fixed Bugs</li>
+                    <li>Unblocker Coming Soon Looks Better</li>
+                </ul>
+            </div>
             <div class="update-entry">
                 <h4>Version 2.1</h4>
-                 <p class="update-date">Date: 2025-05-10</p>
+                <p class="update-date">Date: 2025-05-10</p>
                 <ul class="update-details">
-                    <li>Finally released the site on and actual link.</li>
-                    <li>Added a comingsoon page to the ublocker(in development).</li>
+                    <li>Finally released the site on an actual link.</li>
+                    <li>Added a comingsoon page to the unblocker (in development).</li>
                     <li>Fixed some CSS issues.</li>
                 </ul>
             </div>
-                
-    
 
-      <section class="updates"> 
-        <h3>recent updates</h3> 
-        <div class="update-list">
             <div class="update-entry">
-                <h4>version 1.01-b released</h4>
-                <p class="update-date">date: 2025-05-8</p>
+                <h4>Version 1.01-b Released</h4>
+                <p class="update-date">Date: 2025-05-08</p>
                 <ul class="update-details">
-                    <li>added over 100 new games to the library.</li>
-                    <li>improved site performance and loading times.</li>
+                    <li>Added over 100 new games to the library.</li>
+                    <li>Improved site performance and loading times.</li>
                     <li>Fixed minor bugs in navigation menu.</li>
                     <li>Updated styling for game cards.</li>
                 </ul>
             </div>
 
-            <!-- Another Example Update Entry -->
-             <div class="update-entry">
-                <h4>site launch!</h4>
-                <p class="update-date">date: 2025-05-07</p>
+            <div class="update-entry">
+                <h4>Site Launch!</h4>
+                <p class="update-date">Date: 2025-05-07</p>
                 <ul class="update-details">
-                    <li>welcome to game realm</li>
-                    <li>initial release with a selection of featured games</li>
-                    <li>basic navigation and layout implemented</li>
+                    <li>Welcome to game realm!</li>
+                    <li>Initial release with a selection of featured games.</li>
+                    <li>Basic navigation and layout implemented.</li>
                 </ul>
             </div>
-
         </div>
       </section>
 
       <footer>
-        <p>© 2025 GameZone. All rights reserved.</p>  <br>1.01-b
+        <p>© 2025 Game Realm. All rights reserved.</p>  <br>Version 2.1 <!-- Updated version in footer -->
       </footer>
 
+    <!-- Link game data (even if not directly used, script.js might expect it) -->
+    <script src="assets/JS/gamesData.js"></script>
+    <!-- Link your main JavaScript file -->
+    <script src="assets/JS/script.js"></script>
 </body>
 </html>

@@ -1,16 +1,154 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game realm - Coming Soon!</title> <!-- Updated Title -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="Imgs.main-favicon.ico" type="image/x-icon">
-    <title>COMING SOON!</title>
+    <link href="assets/CSS/index.css" rel="stylesheet" />
+    <style>
+        /* Ensures the body takes at least full viewport height and uses flex for centering */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0; /* Reset default margin */
+            background-color: var(--background-color); /* Theme background */
+            color: var(--text-color); /* Theme text color */
+        }
+
+        /* The main container for the "Coming Soon" message */
+        .coming-soon-container {
+            flex-grow: 1; /* Allows this section to take up available vertical space */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px; /* Add some padding */
+        }
+
+        .coming-soon-container h1 {
+            font-size: 3.5em; /* Make it prominent */
+            font-weight: bold;
+            color: var(--section-title-color); /* Use a theme accent color */
+            margin-bottom: 20px;
+            /* Subtle text shadow, adapting to theme */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            animation: pulseEffect 2.5s infinite ease-in-out; /* Add a subtle pulse */
+        }
+        
+        body.dark-mode .coming-soon-container h1 {
+             text-shadow: 1px 1px 3px rgba(0,0,0,0.4); /* Darker shadow for dark mode */
+        }
+
+        .coming-soon-container p.subtitle {
+            font-size: 1.4em; /* Readable subtitle */
+            color: var(--text-color);
+            margin-bottom: 30px;
+            opacity: 0.85;
+            max-width: 600px; /* Keep subtitle from getting too wide */
+        }
+
+        .coming-soon-container .developer-comment {
+            font-size: 0.9em;
+            color: var(--card-meta-text-color); /* Subtler color for the comment */
+            font-style: italic;
+            margin-top: 25px;
+            opacity: 0.7;
+        }
+        
+        /* Pulse animation for the H1 */
+        @keyframes pulseEffect {
+            0% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.03); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.9;}
+        }
+
+        /* Make sure header and footer don't shrink undesirably */
+        header, footer {
+            flex-shrink: 0;
+        }
+
+        /* Style for .active nav link (optional, add to index.css if used globally) */
+        /*
+        nav ul li a.active {
+            color: var(--header-accent-color); 
+            font-weight: bold;
+        }
+        */
+
+    </style>
 </head>
 <body>
+    <header>
+        <nav>
+          <h1>🎮 game realm</h1>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="comingsoon.html" class="active">Unblocker (In Development)</a></li>
+            <li><a href="updates.html">Updates</a></li>
+            <li><a href="https://discord.gg/ppssWBHMKv">Discord</a></li>
+          </ul>
+          <!-- Settings Button -->
+          <button id="settingsBtn" class="settings-button" title="Settings">
+            <i class="fas fa-cog"></i>
+          </button>
+        </nav>
+    </header>
 
-    <h1>COMING SOON</h1>
-    <!--this is never releasing lmao-->
-    
+    <!-- Settings Menu -->
+      <!-- Settings Menu -->
+      <div id="settingsMenu" class="settings-menu" style="display: none;">
+          <h4>Settings</h4>
+          <button id="closeSettingsBtn" class="close-settings-btn" title="Close Settings">×</button>
+          <div class="setting-item">
+              <label for="darkModeToggle">Dark Mode</label>
+              <label class="switch">
+                  <input type="checkbox" id="darkModeToggle">
+                  <span class="slider round"></span>
+              </label>
+          </div>
+          <div class="setting-item">
+              <button id="clearFavoritesBtn" class="settings-action-button">Clear All Favorites</button>
+          </div>
+          <hr class="settings-divider"> <!-- Visual separator -->
+          <div class="setting-item">
+              <button id="openInAboutBlankBtn" class="settings-action-button stealth-button">Open in about:blank</button>
+          </div>
+          <hr class="settings-divider">
+          <div class="setting-group">
+              <h5>Panic Button</h5>
+              <div class="setting-item">
+                  <label for="panicKeyInput">Panic Key:</label>
+                  <input type="text" id="panicKeyInput" placeholder="Press a key (e.g., \` )" readonly>
+              </div>
+              <div class="setting-item">
+                  <label for="panicUrlInput">Panic URL:</label>
+                  <input type="url" id="panicUrlInput" placeholder="https://google.com">
+              </div>
+              <button id="savePanicSettingsBtn" class="settings-action-button">Save Panic Settings</button>
+              <small id="panicKeyStatus" class="panic-status-message"></small>
+          </div>
+      </div>
+      <!-- End Settings Menu -->
+    <!-- End Settings Menu -->
+
+    <main class="coming-soon-container"> <!-- Use <main> for semantic content -->
+        <h1>COMING SOON!</h1>
+        <p class="subtitle">Our new Unblocker feature is currently under construction. Stay tuned for updates!</p>
+        <p class="developer-comment"><!--this is never releasing lmao--></p>
+    </main>
+
+    <footer>
+        <p>© 2025 Game Realm. All rights reserved.</p> <br>Unblocker Feature - Pending Release
+    </footer>
+
+    <!-- Link game data (even if not directly used, script.js might expect it) -->
+    <script src="assets/JS/gamesData.js"></script>
+    <!-- Link your main JavaScript file -->
+    <script src="assets/JS/script.js"></script>
 </body>
 </html>
