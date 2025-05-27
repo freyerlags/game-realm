@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="Imgs.main-favicon.ico" type="image/x-icon">
+    <!-- Ensure the path to index.css is correct -->
     <link href="assets/CSS/index.css" rel="stylesheet" />
 </head>
 <body>
@@ -27,7 +28,6 @@
         </nav>
       </header>
 
-      <!-- Settings Menu -->
       <!-- Settings Menu -->
       <div id="settingsMenu" class="settings-menu" style="display: none;">
           <h4>Settings</h4>
@@ -62,7 +62,6 @@
           </div>
       </div>
       <!-- End Settings Menu -->
-      <!-- End Settings Menu -->
 
       <section class="hero fade-in">
         <h2>welcome to game realm</h2>
@@ -73,15 +72,201 @@
       <section class="games">
         <h3>your favorites</h3>
         <div class="game-grid" id="favoriteGamesGrid">
-            <!-- Favorite game cards will be dynamically generated here -->
+            <!-- Favorite game cards will be dynamically generated here by script.js -->
              <p id="noFavoritesMessage" style="display: none;">no favorite games added yet. Click the heart icon on a game to add it here!</p>
         </div>
 
+        <!-- Removed the "All Games" section -->
+        <!--
         <h3>All Games</h3>
         <div class="game-grid" id="allGamesGrid">
-            <!-- All game cards (non-favorites) will be dynamically generated here -->
+            <-- All game cards (non-favorites) were dynamically generated here by script.js -- >
         </div>
+        -->
+
+        <!-- Recommended Games Section -->
+        <section class="game-category">
+           <div class="category-header">
+             <h6><i class="fas fa-star"></i> Recommended</h6>
+             <div class="scroll-arrows">
+              <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+              <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
+              </div>
+           </div>
+            <!-- Container for recommended games, populated by script.js -->
+            <!-- This container should be flexible for horizontal scroll -->
+           <div class="btn-container recommended-games-container">
+           </div>
+        </section>
+
+        <!-- Shooter Games Section -->
+        <section class="game-category">
+            <div class="category-header">
+               <h6><i class="fas fa-crosshairs"></i> Shooter Games</h6>
+               <div class="scroll-arrows">
+                   <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+                   <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
+               </div>
+           </div>
+            <!-- Container for shooter games, populated by script.js -->
+           <div class="btn-container shooter-games-container">
+           </div>
+       </section>
+
+        <!-- Combat Games Section -->
+        <section class="game-category">
+             <div class="category-header">
+                <h6><i class="fas fa-fist-raised"></i> Combat Games</h6>
+                <div class="scroll-arrows">
+                    <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+                    <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
+                </div>
+            </div>
+            <!-- Container for combat games, populated by script.js -->
+            <div class="btn-container combat-games-container">
+            </div>
+        </section>
+
+        <!-- Puzzle Games Section -->
+         <section class="game-category">
+             <div class="category-header">
+                <h6><i class="fas fa-puzzle-piece"></i> Puzzle Games</h6>
+                <div class="scroll-arrows">
+                    <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+                    <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
+                </div>
+            </div>
+            <!-- Container for puzzle games, populated by script.js -->
+            <div class="btn-container puzzle-games-container">
+            </div>
+        </section>
+
+        <!-- Multiplayer Games Section -->
+        <section class="game-category">
+            <div class="category-header">
+                <h6><i class="fas fa-users"></i> Multiplayer Games</h6>
+                <div class="scroll-arrows">
+                    <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+                    <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
+                </div>
+            </div>
+            <!-- Container for multiplayer games, populated by script.js -->
+            <div class="btn-container multiplayer-games-container">
+            </div>
+        </section>
+
+        <!-- IO Games Section -->
+        <section class="game-category">
+             <div class="category-header">
+                <h6><i class="fas fa-dot-circle"></i> IO Games</h6>
+                <div class="scroll-arrows">
+                    <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+                    <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
+                </div>
+            </div>
+            <!-- Container for IO games, populated by script.js -->
+            <div class="btn-container io-games-container">
+            </div>
+        </section>
+
+         <!-- Adventure Games Section -->
+        <section class="game-category">
+            <div class="category-header">
+               <h6><i class="fas fa-compass"></i> Adventure Games</h6>
+               <div class="scroll-arrows">
+                   <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+                   <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
+               </div>
+           </div>
+           <!-- Container for adventure games, populated by script.js -->
+           <div class="btn-container adventure-games-container">
+           </div>
+       </section>
+
+        <!-- Clicker Games Section -->
+        <section class="game-category">
+            <div class="category-header">
+                <h6><i class="fas fa-mouse-pointer"></i> Clicker Games</h6>
+                <div class="scroll-arrows">
+                    <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+                    <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
+                </div>
+            </div>
+            <!-- Container for clicker games, populated by script.js -->
+            <div class="btn-container clicker-games-container">
+            </div>
+        </section>
+
+        <!-- Survival Games Section -->
+         <section class="game-category">
+             <div class="category-header">
+                <h6><i class="fas fa-shield-alt"></i> Survival Games</h6>
+                <div class="scroll-arrows">
+                    <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+                    <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
+                </div>
+            </div>
+            <!-- Container for survival games, populated by script.js -->
+            <div class="btn-container survival-games-container">
+           </div>
+       </section>
+
+       <!-- Simulator Games Section -->
+       <section class="game-category">
+          <div class="category-header">
+              <h6><i class="fas fa-cog"></i> Simulator Games</h6>
+              <div class="scroll-arrows">
+                  <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+                  <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
+              </div>
+          </div>
+          <!-- Container for simulator games, populated by script.js -->
+          <div class="btn-container simulator-games-container">
+          </div>
       </section>
+
+      <!-- Platformer Games Section -->
+      <section class="game-category">
+          <div class="category-header">
+             <h6><i class="fas fa-shoe-prints"></i> Platformer Games</h6>
+             <div class="scroll-arrows">
+                 <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+                 <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
+             </div>
+         </div>
+         <!-- Container for platformer games, populated by script.js -->
+         <div class="btn-container platformer-games-container">
+         </div>
+     </section>
+
+       <!-- Fighting Games Section -->
+          <section class="game-category">
+               <div class="category-header">
+                  <h6><i class="fas fa-hand-rock"></i> Fighting Games</h6>
+                  <div class="scroll-arrows">
+                      <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+                      <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
+                  </div>
+              </div>
+              <!-- Container for fighting games, populated by script.js -->
+              <div class="btn-container fighting-games-container">
+              </div>
+         </section>
+
+         <!-- Other Games Section -->
+          <section class="game-category">
+               <div class="category-header">
+                  <h6><i class="fas fa-cube"></i> Other Games</h6>
+                   <div class="scroll-arrows">
+                       <button class="scroll-arrow left-arrow" aria-label="Scroll Left"><i class="fas fa-angle-left"></i></button>
+                       <button class="scroll-arrow right-arrow" aria-label="Scroll Right"><i class="fas fa-angle-right"></i></button>
+                   </div>
+               </div>
+               <!-- Container for other games, populated by script.js -->
+              <div class="btn-container other-games-container">
+              </div>
+         </section>
+
 
     <!-- Game Window Overlay -->
     <div class="game-window-overlay" id="gameWindowOverlay">
@@ -105,6 +290,7 @@
       </footer>
 
     <!-- Link game data -->
+    <!-- IMPORTANT: gamesData.js MUST be loaded BEFORE script.js -->
     <script src="assets/JS/gamesData.js"></script>
     <!-- Link your main JavaScript file -->
     <script src="assets/JS/script.js"></script>

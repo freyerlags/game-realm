@@ -1,4 +1,5 @@
 // assets/js/gamesData.js
+// This file contains the data structure for all games available on the site.
 
 const gamesData = [
     { id: "fav-Games-1v1-LOL-index-html", path: "Games/1v1.LOL/index.html", name: "1v1.LOL", img: "Imgs/1v1.LOL.png" },
@@ -75,7 +76,7 @@ const gamesData = [
     { id: "fav-Games-Crossy-Road-index-html", path: "Games/Crossy Road/index.html", name: "Crossy Road", img: "Imgs/Crossy Road.png" },
     { id: "fav-Games-Cube-Field-index-html", path: "Games/Cube Field/index.html", name: "Cube Field", img: "Imgs/Cube Field.png" },
     { id: "fav-Games-Dante-html", path: "Games/Dante.html", name: "Dante", img: "Imgs/Dante.png" },
-    { id: "fav-Games-Death-Run-3D-index-html", path: "Games/Death Run 3D/index.html", name: "Death Run 3D", img: "Imgs/Death Run 3D.png" },
+    { id: "fav-Games-Death-Run-3D-index-html", path: "Games/Death Run 3D/index.html", name: "Death Run 3D", img: "Imgs/Death Run 3d.png" },
     { id: "fav-Games-Dino-Game-1-html", path: "Games/Dino Game 1.html", name: "Dino Game 1", img: "Imgs/Dino Game 1.png" },
     { id: "fav-Games-Missiles-index-html", path: "Games/Missiles/index.html", name: "Missiles", img: "Imgs/Missiles.png" },
     { id: "fav-Games-Dino-Game-2-index-html", path: "Games/Dino Game 2/index.html", name: "Dino Game 2", img: "Imgs/Dino Game 2.png" },
@@ -99,7 +100,7 @@ const gamesData = [
     { id: "fav-Games-Flappy-Bird-index-html", path: "Games/Flappy Bird/index.html", name: "Flappy Bird", img: "Imgs/Flappy Bird.png" },
     { id: "fav-Games-Flappy-Copter-index-html", path: "Games/Flappy Copter/index.html", name: "Flappy Copter", img: "Imgs/Flappy Copter.png" },
     { id: "fav-Games-Fluidism-index-html", path: "Games/Fluidism/index.html", name: "Fluidism", img: "Imgs/Fluidism.png" },
-    { id: "fav-Games-FNAW-index-html", path: "Games/FNAW/index.html", name: "FNAW", img: "Imgs/FNAW.png" },
+    { id: "fav-Games-FNAW-index-html", path: "Games/FNAW/index.html", name: "FNAW", img: "Imgs/fnaw.png" },
     { id: "fav-Games-Fruit-Ninja-index-html", path: "Games/Fruit Ninja/index.html", name: "Fruit Ninja", img: "Imgs/Fruit Ninja.png" },
     { id: "fav-Games-Getaway-Shootout-index-html", path: "Games/Getaway Shootout/index.html", name: "Getaway Shootout", img: "Imgs/Getaway Shootout.png" },
     { id: "fav-Games-Getting-Over-It-html", path: "Games/Getting Over It.html", name: "Getting Over It", img: "Imgs/Getting Over It.png" },
@@ -128,7 +129,7 @@ const gamesData = [
     { id: "fav-Games-Moonwalk-html", path: "Games/Moonwalk.html", name: "Moonwalk", img: "Imgs/Moonwalk.png" },
     { id: "fav-Games-My-Rusty-Submarine-index-html", path: "Games/My Rusty Submarine/index.html", name: "My Rusty Submarine", img: "Imgs/My Rusty Submarine.png" },
     { id: "fav-Games-Neon-Foosball-html", path: "Games/Neon Foosball.html", name: "Neon Foosball", img: "Imgs/Neon Foosball.png" },
-    { id: "fav-Games-N-Gon-Master-index-html", path: "Games/N-Gon Master/index.html", name: "N-Gon Master", img: "Imgs/N-Gon Master.png" },
+    { id: "fav-Games-N-Gon-Master-index-html", path: "Games/N-Gon Master/index.html", name: "N-Gon Master", img: "Imgs/N-gon Master.png" },
     { id: "fav-Games-Nitro-Clash-html", path: "Games/Nitro Clash.html", name: "Nitro Clash", img: "Imgs/Nitro Clash.png" },
     { id: "fav-Games-Not-That-Dead-html", path: "Games/Not That Dead.html", name: "Not That Dead", img: "Imgs/Not That Dead.png" },
     { id: "fav-Games-Nut-Simulator-index-html", path: "Games/Nut Simulator/index.html", name: "Nut Simulator", img: "Imgs/Nut Simulator.png" },
@@ -137,7 +138,7 @@ const gamesData = [
     { id: "fav-Games-Pacman-Classic-index-html", path: "Games/Pacman Classic/index.html", name: "Pacman Classic", img: "Imgs/Pacman Classic.png" },
     { id: "fav-Games-Paperclips-index-html", path: "Games/Paperclips/index.html", name: "Paperclips", img: "Imgs/Paperclips.png" },
     { id: "fav-Games-Paper-io-2-html", path: "Games/Paper.io 2.html", name: "Paper.io 2", img: "Imgs/Paper.io 2.png" },
-    { id: "fav-Games-Paper-io-3D-html", path: "Games/Paper.io 3D.html", name: "Paper.io 3D", img: "Imgs/Paper.io 3D.png" },
+    { id: "fav-Games-Paper.io 3D-html", path: "Games/Paper.io 3D.html", name: "Paper.io 3D", img: "Imgs/Paper.io 3D.png" },
     { id: "fav-Games-Planetesimals-index-html", path: "Games/Planetesimals/index.html", name: "Planetesimals", img: "Imgs/Planetesimals.png" },
     { id: "fav-Games-Plantale-html", path: "Games/Plantale.html", name: "Plantale", img: "Imgs/Plantale.png" },
     { id: "fav-Games-Push-Back-index-html", path: "Games/Push Back/index.html", name: "Push Back", img: "Imgs/Push Back.png" },
@@ -152,7 +153,7 @@ const gamesData = [
     { id: "fav-Games-Rooftop-Snipers-2-index-html", path: "Games/Rooftop Snipers 2/index.html", name: "Rooftop Snipers 2", img: "Imgs/Rooftop Snipers 2.png" },
     { id: "fav-Games-Rolling-Forests-html", path: "Games/Rolling Forests.html", name: "Rolling Forests", img: "Imgs/Rolling Forests.png" },
     { id: "fav-Games-Rope-Slide-2-html", path: "Games/Rope Slide 2.html", name: "Rope Slide 2", img: "Imgs/Rope Slide 2.png" },
-    { id: "fav-Games-Sandtrix-index-html", path: "Games/Sandtrix/index.html", name: "Sandtrix", img: "Imgs/Sand Game.png" }, // Sandtrix uses Sand Game image
+    { id: "fav-Games-Sandtrix-index-html", path: "Games/Sandtrix/index.html", name: "Sandtrix", img: "Imgs/Sand Game.png" },
     { id: "fav-Games-Sand-Game-html", path: "Games/Sand Game.html", name: "Sand Game", img: "Imgs/Sand Game.png" },
     { id: "fav-Games-Sausage-Run-html", path: "Games/Sausage Run.html", name: "Sausage Run", img: "Imgs/Sausage Run.png" },
     { id: "fav-Games-Scratch-Brawl-1-html", path: "Games/Scratch Brawl 1.html", name: "Scratch Brawl 1", img: "Imgs/Scratch Brawl 1.png" },
@@ -161,7 +162,7 @@ const gamesData = [
     { id: "fav-Games-Skibidi-Toilet-index-html", path: "Games/Skibidi Toilet/index.html", name: "Skibidi Toilet", img: "Imgs/Skibidi Toilet.png" },
     { id: "fav-Games-Slime-Ninja-html", path: "Games/Slime Ninja.html", name: "Slime Ninja", img: "Imgs/Slime Ninja.png" },
     { id: "fav-Games-Sling-Drift-html", path: "Games/Sling Drift.html", name: "Sling Drift", img: "Imgs/Sling Drift.png" },
-    { id: "fav-Games-Slope-index-html", path: "Games/Slope/index.html", name: "Slope", img: "Imgs/Slope.png" },
+    { id: "fav-Games-Slope-html", path: "Games/Slope/index.html", name: "Slope", img: "Imgs/Slope.png" },
     { id: "fav-Games-Snail-Platformer-html", path: "Games/Snail Platformer.html", name: "Snail Platformer", img: "Imgs/Snail Platformer.png" },
     { id: "fav-Games-Snowball-io-index-html", path: "Games/Snowball.io/index.html", name: "Snowball.io", img: "Imgs/Snowball.io.png" },
     { id: "fav-Games-Snow-Rider-3D-index-html", path: "Games/Snow Rider 3D/index.html", name: "Snow Rider 3D", img: "Imgs/Snow Rider 3D.png" },
@@ -195,7 +196,7 @@ const gamesData = [
     { id: "fav-Games-Time-Shooter-2-html", path: "Games/Time Shooter 2.html", name: "Time Shooter 2", img: "Imgs/Time Shooter 2.png" },
     { id: "fav-Games-Time-Shooter-3-html", path: "Games/Time Shooter 3.html", name: "Time Shooter 3", img: "Imgs/Time Shooter 3.png" },
     { id: "fav-Games-Tomb-Of-The-Mask-html", path: "Games/Tomb Of The Mask.html", name: "Tomb Of The Mask", img: "Imgs/Tomb Of The Mask.png" },
-    { id: "fav-Games-Totally-Accurate-Battle-Simulator-TABS-index-html", path: "Games/Totally Accurate Battle Simulator (TABS)/index.html", name: "Totally Accurate Battle Simulator (TABS)", img: "Imgs/Totally Accurate Battle Simulator (TABS).png" },
+    { id: "fav-Games-Totally-Accurate-Battle-Simulator-TABS-index-html", path: "Games/Totally Accurate Battle Simulator (TABS)/index.html", name: "Totally Accurate Battle Simulator (TABS)", img: "Imgs/Totally Accurate Battle Simulator (Tabs).png" },
     { id: "fav-Games-Tower-Master-index-html", path: "Games/Tower Master/index.html", name: "Tower Master", img: "Imgs/Tower Master.png" },
     { id: "fav-Games-Trimps-index-html", path: "Games/Trimps/index.html", name: "Trimps", img: "Imgs/Trimps.png" },
     { id: "fav-Games-Tube-Jumpers-html", path: "Games/Tube Jumpers.html", name: "Tube Jumpers", img: "Imgs/Tube Jumpers.png" },
@@ -205,5 +206,5 @@ const gamesData = [
     { id: "fav-Games-Water-Sort-html", path: "Games/Water Sort.html", name: "Water Sort", img: "Imgs/Water Sort.png" },
     { id: "fav-Games-Wordle-html", path: "Games/Wordle.html", name: "Wordle", img: "Imgs/Wordle.png" },
     { id: "fav-Games-Worlds-Hardest-Game-2-index-html", path: "Games/Worlds Hardest Game 2/index.html", name: "Worlds Hardest Game 2", img: "Imgs/Worlds Hardest Game 2.png" },
-    { id: "fav-Games-xx142-b2-exe-html", path: "Games/xx142-b2.exe.html", name: "xx142-b2.exe", img: "Imgs/Xx142-b2.exe.png" }, // Keeping the .exe capitalization as part of the "word"
+    { id: "fav-Games-xx142-b2-exe-html", path: "Games/xx142-b2.exe.html", name: "xx142-b2.exe", img: "Imgs/Xx142-b2.exe.png" },
 ];
